@@ -1,6 +1,6 @@
 cask "mdlive-app" do
-  version "2.0.0"
-  sha256 "PLACEHOLDER"
+  version "2.1.0"
+  sha256 "b20591ad700899813d6b50db01026f374695349a098dfc714d7b6d7e8334adfc"
 
   url "https://github.com/bearded-giant/mdlive/releases/download/v#{version}/mdlive_#{version}_aarch64.dmg"
   name "mdlive"

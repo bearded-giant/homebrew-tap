@@ -5,21 +5,21 @@ class Mdlive < Formula
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/bearded-giant/mdlive/releases/download/v2.0.0/mdlive-aarch64-apple-darwin"
-      sha256 "2bac9460d55ef00efcc19ea56e2f443ed4c7856059c588d082a681ec3e8fdacc"
+      url "https://github.com/bearded-giant/mdlive/releases/download/v2.1.0/mdlive-aarch64-apple-darwin"
+      sha256 "3bb995e8530ab8db60fb40f750b6ccbbc8da4f78aa12b7b3632b60fb664a6e94"
     else
-      url "https://github.com/bearded-giant/mdlive/releases/download/v2.0.0/mdlive-x86_64-apple-darwin"
-      sha256 "12203bbb66742689f625f74fda7c78986b85b08062f9cf7100dddc66ac4ed9f6"
+      url "https://github.com/bearded-giant/mdlive/releases/download/v2.1.0/mdlive-x86_64-apple-darwin"
+      sha256 "d37b0530d1c6cc3a39f5551e2a7dbacf54b9e7ab640808d83865deda12cf8323"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/bearded-giant/mdlive/releases/download/v2.0.0/mdlive-aarch64-unknown-linux-gnu"
-      sha256 "643601df225f56eecb8f0ffe35f0b0b4bf73b91342b89457a637e41e4b51cf39"
+      url "https://github.com/bearded-giant/mdlive/releases/download/v2.1.0/mdlive-aarch64-unknown-linux-gnu"
+      sha256 "7d81b09aeca12cd2389e3866724a65cfca01091581864addb9cbc48a77f8f7f3"
     else
-      url "https://github.com/bearded-giant/mdlive/releases/download/v2.0.0/mdlive-x86_64-unknown-linux-gnu"
-      sha256 "c85adc56c7e9081faaae4d01f4ae9843cc11d8b96e6c68b3a2ee397f314dcb5a"
+      url "https://github.com/bearded-giant/mdlive/releases/download/v2.1.0/mdlive-x86_64-unknown-linux-gnu"
+      sha256 "4f7cc39a47ac2846d19a0aa99408b920bacba372f5bd1bfd2f5819ccf02cb5c7"
     end
   end
 
