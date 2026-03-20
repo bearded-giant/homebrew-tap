@@ -1,6 +1,6 @@
 cask "mdlive-app" do
-  version "2.1.0"
-  sha256 "b20591ad700899813d6b50db01026f374695349a098dfc714d7b6d7e8334adfc"
+  version "2.2.0"
+  sha256 "f7e8510a0b6865641757df5865aaed18e08136ca5ebb43f89bc343afd88234b6"
 
   url "https://github.com/bearded-giant/mdlive/releases/download/v#{version}/mdlive_#{version}_aarch64.dmg"
   name "mdlive"
@@ -8,10 +8,6 @@ cask "mdlive-app" do
   homepage "https://github.com/bearded-giant/mdlive"
 
   app "mdlive.app"
-
-  postflight do
-    # cli is symlinked on first app launch via osascript admin prompt
-  end
 
   zap trash: [
     "~/Library/Application Support/com.beardedgiant.mdlive",
