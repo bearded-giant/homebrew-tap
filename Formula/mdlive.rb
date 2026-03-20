@@ -1,26 +1,26 @@
 class Mdlive < Formula
   desc "Markdown workspace server for AI coding agents"
   homepage "https://github.com/bearded-giant/mdlive"
-  version "2.2.0"
+  version "2.2.1"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/bearded-giant/mdlive/releases/download/v#{version}/mdlive-aarch64-apple-darwin"
-      sha256 "5f183a5c46919cd47a2d71896114a48b24199c773feae2c185ac868b37a194cd"
+      sha256 "b89bd0da3c0f6f70581533f88437e10cfe9f42cb1304db64834b61e104cfbf5d"
     else
       url "https://github.com/bearded-giant/mdlive/releases/download/v#{version}/mdlive-x86_64-apple-darwin"
-      sha256 "847ee0016ebfd199e45fe97cd6283226e9d1226889ca2f46a879ea0cdd78dc10"
+      sha256 "e9773c92f1a2286eca3a9c48cdfa6c4e67c1381d9e58c575296bdfff01b3519a"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/bearded-giant/mdlive/releases/download/v#{version}/mdlive-aarch64-unknown-linux-gnu"
-      sha256 "2b48f0b0e5c9e4e308030d34393f72c15eeb3d9bbcf668c9c50893add10cb61c"
+      sha256 "f5e2801c83fc367f0b44239f6ee9737f9a31305e9431e2724ece628690106fc8"
     else
       url "https://github.com/bearded-giant/mdlive/releases/download/v#{version}/mdlive-x86_64-unknown-linux-gnu"
-      sha256 "9bbddc0dae88b58e9dd55ba2f3bd8401e5d2a1d3c209e7e2069096782def6222"
+      sha256 "c58eb8247be599846ed9f7d4b194c833538ff6078e2dffed06f95f6478385053"
     end
   end
 
