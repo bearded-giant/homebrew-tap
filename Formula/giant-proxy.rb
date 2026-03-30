@@ -7,7 +7,7 @@ class GiantProxy < Formula
   on_macos do
     on_arm do
       url "https://github.com/bearded-giant/gproxy/releases/download/v#{version}/giant-proxy-v#{version}-aarch64-apple-darwin.tar.gz"
-      sha256 "b50f0ccb2aa0340926f7f39189054070e9ba6b1f92833ea928dcbe253ee13bb3"
+      sha256 "59820766c95556b79af34b0000d1a61e27e413b1e61087687ff3c75640b3e8f7"
     end
   end
 
