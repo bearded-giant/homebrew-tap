@@ -1,13 +1,13 @@
 class GiantProxy < Formula
   desc "HTTPS proxy with Map Remote rules"
   homepage "https://github.com/bearded-giant/gproxy"
-  version "0.3.0"
+  version "0.4.2"
   license "MIT"
 
   on_macos do
     on_arm do
       url "https://github.com/bearded-giant/gproxy/releases/download/v#{version}/giant-proxy-v#{version}-aarch64-apple-darwin.tar.gz"
-      sha256 "3f14324259c7e89ea15fe6b36d44f85c5155856a6bacd9ece40af4ab6a0e235e"
+      sha256 "b50f0ccb2aa0340926f7f39189054070e9ba6b1f92833ea928dcbe253ee13bb3"
     end
   end
 
