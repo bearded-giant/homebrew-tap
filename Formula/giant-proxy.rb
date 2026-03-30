@@ -1,7 +1,7 @@
 class GiantProxy < Formula
   desc "HTTPS proxy with Map Remote rules"
   homepage "https://github.com/bearded-giant/gproxy"
-  version "0.4.2"
+  version "0.5.0"
   license "MIT"
 
   on_macos do
