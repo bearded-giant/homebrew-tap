@@ -1,13 +1,13 @@
 class GiantProxyCli < Formula
   desc "Giant Proxy CLI + daemon (headless, no GUI)"
   homepage "https://github.com/bearded-giant/gproxy"
-  version "0.5.1"
+  version "0.5.2"
   license "MIT"
 
   on_macos do
     on_arm do
       url "https://github.com/bearded-giant/gproxy/releases/download/v#{version}/giant-proxy-v#{version}-aarch64-apple-darwin.tar.gz"
-      sha256 "5913c520b318bc40b38489a1fd3eed2a48a2ece9c3450ac913f7473e83d584da"
+      sha256 "040d025ba45b5f15af4a2c7ccb2d429e183e58e1b461072e0346892c36bcf63f"
     end
   end
 

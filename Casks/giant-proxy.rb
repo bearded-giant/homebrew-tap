@@ -1,9 +1,9 @@
 cask "giant-proxy" do
-  version "0.5.1"
+  version "0.5.2"
 
   on_arm do
     url "https://github.com/bearded-giant/gproxy/releases/download/v#{version}/Giant.Proxy_#{version}_aarch64.dmg"
-    sha256 "b7acefbc87cfb1b06a0fb51dfc400ebd94e910dc2be785959e9b2de38699ec6b"
+    sha256 "714543d3da2222df7991335bbb122d996122a1f6c84d1d2a9ce2eeb7520d2515"
   end
 
   name "Giant Proxy"
