@@ -1,4 +1,4 @@
-cask "giant-proxy-ui" do
+cask "giant-proxy" do
   version "0.5.0"
 
   on_arm do
@@ -7,7 +7,7 @@ cask "giant-proxy-ui" do
   end
 
   name "Giant Proxy"
-  desc "Menubar app for Giant Proxy"
+  desc "HTTPS proxy with Map Remote rules"
   homepage "https://github.com/bearded-giant/gproxy"
 
   app "Giant Proxy.app"

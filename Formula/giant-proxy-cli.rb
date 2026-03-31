@@ -1,5 +1,5 @@
-class GiantProxy < Formula
-  desc "HTTPS proxy with Map Remote rules"
+class GiantProxyCli < Formula
+  desc "Giant Proxy CLI + daemon (headless, no GUI)"
   homepage "https://github.com/bearded-giant/gproxy"
   version "0.5.0"
   license "MIT"
