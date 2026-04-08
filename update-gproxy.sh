@@ -16,7 +16,7 @@ fi
 echo "==> Updating giant-proxy tap to v${VERSION}"
 
 # expected assets
-CLI_ASSET="giant-proxy-v${VERSION}-aarch64-apple-darwin.tar.gz"
+CLI_ASSET="gproxy-v${VERSION}-aarch64-apple-darwin.tar.gz"
 DMG_ASSET="Giant.Proxy_${VERSION}_aarch64.dmg"
 ALL_ASSETS=("$CLI_ASSET" "$DMG_ASSET")
 
