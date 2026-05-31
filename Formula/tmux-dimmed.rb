@@ -43,11 +43,11 @@ class TmuxDimmed < Formula
 end
 
 __END__
-diff --git a/colour.c b/colour.c
-index 791c5fd5..91e39c04 100644
---- a/colour.c
-+++ b/colour.c
-@@ -120,6 +120,51 @@ colour_force_rgb(int c)
+diff --git i/colour.c w/colour.c
+index 791c5fd..c3fd8a5 100644
+--- i/colour.c
++++ w/colour.c
+@@ -120,6 +120,70 @@ colour_force_rgb(int c)
  	return (-1);
  }
  
@@ -96,13 +96,32 @@ index 791c5fd5..91e39c04 100644
 +	return (colour_join_rgb((u_char)sr, (u_char)sg, (u_char)sb));
 +}
 +
++/*
++ * Local patch: hue-preserving darken. Scale each RGB channel to keep% of its
++ * value (keep=75 -> 25% darker). Used to push inactive-pane backgrounds darker
++ * than the content dim alone, without shifting hue. Returns input unchanged if
++ * it can't be resolved to RGB.
++ */
++int
++colour_darken(int c, int keep)
++{
++	u_char	r, g, b;
++	int	rgb;
++
++	rgb = colour_force_rgb(c);
++	if (rgb == -1)
++		return (c);
++	colour_split_rgb(rgb, &r, &g, &b);
++	return (colour_join_rgb(r * keep / 100, g * keep / 100, b * keep / 100));
++}
++
  /* Convert colour to a string. */
  const char *
  colour_tostring(int c)
-diff --git a/screen-redraw.c b/screen-redraw.c
-index 1c1b8503..4b9a98b9 100644
---- a/screen-redraw.c
-+++ b/screen-redraw.c
+diff --git i/screen-redraw.c w/screen-redraw.c
+index 1c1b850..4b9a98b 100644
+--- i/screen-redraw.c
++++ w/screen-redraw.c
 @@ -905,6 +905,14 @@ screen_redraw_draw_pane(struct screen_redraw_ctx *ctx, struct window_pane *wp)
  		top = ctx->statuslines;
  	else
@@ -127,10 +146,10 @@ index 1c1b8503..4b9a98b9 100644
  #ifdef ENABLE_SIXEL
  	tty_draw_images(c, wp, s);
  #endif
-diff --git a/screen-write.c b/screen-write.c
-index a2755d35..cbef4f53 100644
---- a/screen-write.c
-+++ b/screen-write.c
+diff --git i/screen-write.c w/screen-write.c
+index a2755d3..cbef4f5 100644
+--- i/screen-write.c
++++ w/screen-write.c
 @@ -164,6 +164,13 @@ screen_write_set_client_cb(struct tty_ctx *ttyctx, struct client *c)
  	if (status_at_line(c) == 0)
  		ttyctx->yoff += status_line_size(c);
@@ -145,11 +164,11 @@ index a2755d35..cbef4f53 100644
  	return (1);
  }
  
-diff --git a/tmux.h b/tmux.h
-index dd62382e..856fb06e 100644
---- a/tmux.h
-+++ b/tmux.h
-@@ -1618,6 +1618,15 @@ struct tty {
+diff --git i/tmux.h w/tmux.h
+index 1927fa9..73b74c8 100644
+--- i/tmux.h
++++ w/tmux.h
+@@ -1620,6 +1620,15 @@ struct tty {
  
  	struct event	 key_timer;
  	struct tty_key	*key_tree;
@@ -165,18 +184,19 @@ index dd62382e..856fb06e 100644
  };
  
  /* Terminal command context. */
-@@ -3004,6 +3013,7 @@ int	 colour_find_rgb(u_char, u_char, u_char);
+@@ -3006,6 +3015,8 @@ int	 colour_find_rgb(u_char, u_char, u_char);
  int	 colour_join_rgb(u_char, u_char, u_char);
  void	 colour_split_rgb(int, u_char *, u_char *, u_char *);
  int	 colour_force_rgb(int);
 +int	 colour_dim(int, int);
++int	 colour_darken(int, int);
  const char *colour_tostring(int);
  enum client_theme colour_totheme(int);
  int	 colour_fromstring(const char *);
-diff --git a/tty.c b/tty.c
-index 71293f6b..35acf716 100644
---- a/tty.c
-+++ b/tty.c
+diff --git i/tty.c w/tty.c
+index 71293f6..7eec409 100644
+--- i/tty.c
++++ w/tty.c
 @@ -1769,6 +1769,8 @@ tty_write(void (*cmdfn)(struct tty *, const struct tty_ctx *),
  			if (state == 0)
  				continue;
@@ -201,7 +221,7 @@ index 71293f6b..35acf716 100644
 +		if (target == 8 || target == -1)
 +			target = tty->bg;
 +		gc2.fg = colour_dim(gc2.fg, target);
-+		gc2.bg = colour_dim(gc2.bg, target);
++		gc2.bg = colour_darken(colour_dim(gc2.bg, target), 75);
 +		if (gc2.us != 0 && gc2.us != 8)
 +			gc2.us = colour_dim(gc2.us, target);
 +	}
