@@ -44,7 +44,7 @@ end
 
 __END__
 diff --git i/colour.c w/colour.c
-index 791c5fd..c3fd8a5 100644
+index 791c5fd..2006fcf 100644
 --- i/colour.c
 +++ w/colour.c
 @@ -120,6 +120,70 @@ colour_force_rgb(int c)
@@ -194,7 +194,7 @@ index 1927fa9..73b74c8 100644
  enum client_theme colour_totheme(int);
  int	 colour_fromstring(const char *);
 diff --git i/tty.c w/tty.c
-index 71293f6..7eec409 100644
+index 71293f6..4adb60e 100644
 --- i/tty.c
 +++ w/tty.c
 @@ -1769,6 +1769,8 @@ tty_write(void (*cmdfn)(struct tty *, const struct tty_ctx *),
@@ -206,24 +206,21 @@ index 71293f6..7eec409 100644
  		}
  	}
  }
-@@ -2756,6 +2758,22 @@ tty_attributes(struct tty *tty, const struct grid_cell *gc,
+@@ -2756,6 +2758,19 @@ tty_attributes(struct tty *tty, const struct grid_cell *gc,
  	tty_check_bg(tty, palette, &gc2);
  	tty_check_us(tty, palette, &gc2);
  
 +	/*
-+	 * Local patch: if the cell belongs to an inactive pane, blend its colors
-+	 * toward the pane's default bg. This dims arbitrary ANSI-colored content
-+	 * (e.g. lazygit, syntax highlighting) — window-style alone only affects
-+	 * cells using the terminal default colors.
++	 * Local patch: if the cell belongs to an inactive pane, darken ONLY its
++	 * background, leaving fg/underline at full color. Resolves a default bg
++	 * (8/9/-1) to the terminal's real bg first so default-bg cells darken too.
++	 * Text keeps its hue; only the canvas behind it dims.
 +	 */
 +	if (tty->dim_inactive) {
-+		int target = defaults->bg;
-+		if (target == 8 || target == -1)
-+			target = tty->bg;
-+		gc2.fg = colour_dim(gc2.fg, target);
-+		gc2.bg = colour_darken(colour_dim(gc2.bg, target), 80);
-+		if (gc2.us != 0 && gc2.us != 8)
-+			gc2.us = colour_dim(gc2.us, target);
++		int bg = gc2.bg;
++		if (bg == 8 || bg == 9 || bg == -1)
++			bg = tty->bg;
++		gc2.bg = colour_darken(bg, 80);
 +	}
 +
  	/*
