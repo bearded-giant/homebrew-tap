@@ -54,10 +54,10 @@ index 791c5fd..c3fd8a5 100644
 +/*
 + * Local patch: produce a dimmed version of a colour for inactive-pane content.
 + * Two-stage algorithm:
-+ *   1. Desaturate by blending each channel 30% toward perceptual luma. This
++ *   1. Desaturate by blending each channel 10% toward perceptual luma. This
 + *      keeps a hint of the hue but kills extreme saturation, which prevented
 + *      e.g. very saturated blues from blowing out on some terminals.
-+ *   2. Blend the desaturated result 35% toward the target colour (normally the
++ *   2. Blend the desaturated result 25% toward the target colour (normally the
 + *      pane's default bg) so everything fades into the muted bg.
 + * Works correctly for both dark and light themes because the target colour
 + * drives the dim direction. If either colour can't be resolved to RGB the
@@ -83,15 +83,15 @@ index 791c5fd..c3fd8a5 100644
 +	/* Perceptual luma (Rec. 601 weights), scaled by 1000 for integer math. */
 +	luma = (299 * r + 587 * g + 114 * b) / 1000;
 +
-+	/* Step 1: desaturate 30% toward luma — keeps 70% of the chroma. */
-+	sr = (r * 70 + luma * 30) / 100;
-+	sg = (g * 70 + luma * 30) / 100;
-+	sb = (b * 70 + luma * 30) / 100;
++	/* Step 1: desaturate 10% toward luma — keeps 90% of the chroma. */
++	sr = (r * 90 + luma * 10) / 100;
++	sg = (g * 90 + luma * 10) / 100;
++	sb = (b * 90 + luma * 10) / 100;
 +
-+	/* Step 2: blend 35% toward target — pulls colors into the muted bg. */
-+	sr = (sr * 65 + tr * 35) / 100;
-+	sg = (sg * 65 + tg * 35) / 100;
-+	sb = (sb * 65 + tb * 35) / 100;
++	/* Step 2: blend 25% toward target — pulls colors into the muted bg. */
++	sr = (sr * 75 + tr * 25) / 100;
++	sg = (sg * 75 + tg * 25) / 100;
++	sb = (sb * 75 + tb * 25) / 100;
 +
 +	return (colour_join_rgb((u_char)sr, (u_char)sg, (u_char)sb));
 +}
@@ -221,7 +221,7 @@ index 71293f6..7eec409 100644
 +		if (target == 8 || target == -1)
 +			target = tty->bg;
 +		gc2.fg = colour_dim(gc2.fg, target);
-+		gc2.bg = colour_darken(colour_dim(gc2.bg, target), 75);
++		gc2.bg = colour_darken(colour_dim(gc2.bg, target), 80);
 +		if (gc2.us != 0 && gc2.us != 8)
 +			gc2.us = colour_dim(gc2.us, target);
 +	}
