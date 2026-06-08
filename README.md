@@ -41,3 +41,18 @@ brew upgrade --cask giant-proxy     # or: brew upgrade giant-proxy-cli
 ```
 
 Formulae are automatically updated when new releases are published via per-project GitHub Actions (`update-homebrew.yml`) — no manual scripts needed.
+
+### Exception: tmux-dimmed
+
+Patches upstream tmux 3.6b inline — no source repo. Patch lives at `patches/tmux-dimmed-3.6b.patch` and is fetched by the formula via raw GitHub URL with a pinned SHA256. To edit:
+
+```bash
+$EDITOR patches/tmux-dimmed-3.6b.patch
+./update-tmux-dimmed.sh           # recomputes SHA, patches Formula/tmux-dimmed.rb
+git diff                          # review
+git add Formula/tmux-dimmed.rb patches/tmux-dimmed-3.6b.patch
+git commit -m "tmux-dimmed: <change>"
+git push
+```
+
+Pinned SHA + `main`-branch URL means consumers must `brew update` (or reinstall) to pick up the new patch.
