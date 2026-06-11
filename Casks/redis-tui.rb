@@ -3,7 +3,7 @@ cask "redis-tui" do
   name "redis-tui"
   desc "A powerful TUI for managing Redis databases"
   homepage "https://github.com/bearded-giant/redis-tui"
-  version "1.0.33"
+  version "1.0.34"
 
   livecheck do
     skip "Auto-generated on release."
@@ -14,22 +14,22 @@ cask "redis-tui" do
   on_macos do
     on_intel do
       url "https://github.com/bearded-giant/redis-tui/releases/download/v#{version}/redis-tui_#{version}_Darwin_x86_64.tar.gz"
-      sha256 "50437d69be15ad2068f901f33b226274d2fc2cf5475708ad7f9f89c60e928437"
+      sha256 "fddcb43e85a6d6c4baa23ed46f0bb02561b378511c9efc08f19222df331475bb"
     end
     on_arm do
       url "https://github.com/bearded-giant/redis-tui/releases/download/v#{version}/redis-tui_#{version}_Darwin_arm64.tar.gz"
-      sha256 "0927dcf0e6dd477cc1818fdd6543b7489a914953f922eaa408199b44d9329d09"
+      sha256 "02aaa34ea7e9d722bb3f22cbffe1b9c3dcec91cb62057e2bc52bfe774d230afd"
     end
   end
 
   on_linux do
     on_intel do
       url "https://github.com/bearded-giant/redis-tui/releases/download/v#{version}/redis-tui_#{version}_Linux_x86_64.tar.gz"
-      sha256 "32f4179ae791f6014e9ebcf7bc0ebbd39952620dcacc78058470328460fd06df"
+      sha256 "32d9d97318a22569ef226269f81fff328ff059321342179af807c1a2691722c9"
     end
     on_arm do
       url "https://github.com/bearded-giant/redis-tui/releases/download/v#{version}/redis-tui_#{version}_Linux_arm64.tar.gz"
-      sha256 "d88e5b5626d8a8c834e5ee9fa4754ab40f76b89a7119e360aa2087f6a293e9b1"
+      sha256 "e30be1beee5afa273438da8ccc843921f4f768765b8fd9719244738751ad63e5"
     end
   end
 
