@@ -1,15 +1,16 @@
 class GitlabMonitor < Formula
   desc "K9s-style TUI for monitoring GitLab pipelines"
   homepage "https://github.com/bearded-giant/gitlab-monitor"
-  version "1.5.3"
+  version "1.5.10"
   license "Apache-2.0"
 
-  url "https://github.com/bearded-giant/gitlab-monitor/releases/download/v#{version}/glmon-aarch64-apple-darwin"
-  sha256 "0913750de68a16e0ac7146de75098fe28f0af47aedb0678f65a580e1ae5d7afd"
+  url "https://github.com/bearded-giant/gitlab-monitor/releases/download/v#{version}/glmon-aarch64-apple-darwin.tar.gz"
+  sha256 "b80fd992d63e6e478056a78149f9ecb416f84838d7f192d3d9922bf6478caa3f"
 
   def install
-    bin.install "glmon-aarch64-apple-darwin" => "glmon"
-    bin.install_symlink "glmon" => "gitlab-monitor"
+    libexec.install Dir["*"]
+    bin.install_symlink libexec/"glmon"
+    bin.install_symlink libexec/"glmon" => "gitlab-monitor"
   end
 
   test do
