@@ -1,7 +1,7 @@
 class GitlabMonitor < Formula
   desc "K9s-style TUI for monitoring GitLab pipelines"
   homepage "https://github.com/bearded-giant/gitlab-monitor"
-  version "1.5.10"
+  version "1.7.0"
   license "Apache-2.0"
 
   url "https://github.com/bearded-giant/gitlab-monitor/releases/download/v#{version}/glmon-aarch64-apple-darwin.tar.gz"
