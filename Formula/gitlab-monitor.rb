@@ -1,11 +1,11 @@
 class GitlabMonitor < Formula
   desc "K9s-style TUI for monitoring GitLab pipelines"
   homepage "https://github.com/bearded-giant/gitlab-monitor"
-  version "1.8.1"
+  version "1.9.0"
   license "Apache-2.0"
 
   url "https://github.com/bearded-giant/gitlab-monitor/releases/download/v#{version}/glmon-aarch64-apple-darwin.tar.gz"
-  sha256 "dde3fdc62aab31c643d739de0efd4964ed7c04398af409ddd15ebd95ac27b725"
+  sha256 "161f5a6a20ca5098d8ed3d97aa4b2b246c2a7cf6580a2788d3e8076bcc208708"
 
   def install
     libexec.install Dir["*"]
