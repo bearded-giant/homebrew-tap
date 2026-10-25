@@ -149,7 +149,7 @@ index 1927fa9..73b74c8 100644
  enum client_theme colour_totheme(int);
  int	 colour_fromstring(const char *);
 diff --git i/tty.c w/tty.c
-index 71293f6..4adb60e 100644
+index 71293f6..12e259b 100644
 --- i/tty.c
 +++ w/tty.c
 @@ -1769,6 +1769,8 @@ tty_write(void (*cmdfn)(struct tty *, const struct tty_ctx *),
@@ -161,7 +161,7 @@ index 71293f6..4adb60e 100644
  		}
  	}
  }
-@@ -2756,6 +2758,19 @@ tty_attributes(struct tty *tty, const struct grid_cell *gc,
+@@ -2756,6 +2758,21 @@ tty_attributes(struct tty *tty, const struct grid_cell *gc,
  	tty_check_bg(tty, palette, &gc2);
  	tty_check_us(tty, palette, &gc2);
  
@@ -175,7 +175,9 @@ index 71293f6..4adb60e 100644
 +		int bg = gc2.bg;
 +		if (bg == 8 || bg == 9 || bg == -1)
 +			bg = tty->bg;
-+		gc2.bg = colour_darken(bg, 80);
++		/* tty->bg is -1 until the terminal answers OSC 11; darkening it paints colour 255. */
++		if (bg != -1)
++			gc2.bg = colour_darken(bg, 80);
 +	}
 +
  	/*

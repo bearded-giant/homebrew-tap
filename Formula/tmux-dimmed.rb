@@ -4,6 +4,7 @@ class TmuxDimmed < Formula
   url "https://github.com/tmux/tmux/releases/download/3.6b/tmux-3.6b.tar.gz"
   sha256 "390759d25fdba016887ec982b808927e637070fd7d03a8021f8ef3102b9ae3c7"
   license "ISC"
+  revision 1
 
   depends_on "pkgconf" => :build
   depends_on "libevent"
@@ -14,7 +15,7 @@ class TmuxDimmed < Formula
 
   patch do
     url "https://raw.githubusercontent.com/bearded-giant/homebrew-tap/main/patches/tmux-dimmed-3.6b.patch"
-    sha256 "f0142b28c8427a79c85416356952e9863791bfada011cb36b26460107acc2330"
+    sha256 "8100d64e6f4b3bc5042e09c834e6b9cc8a561fda31062536152442887215916a"
   end
 
   def install
